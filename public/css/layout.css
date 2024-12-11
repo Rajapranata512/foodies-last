@@ -1,0 +1,300 @@
+.main-header {
+
+    font-family: 'Raleway', sans-serif;
+
+    background-color: #f39c12;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+
+
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-image {
+    margin-right: 10px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.site-title {
+
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.border-bottom {
+    border-bottom: 3px solid #030303 !important;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu ul li {
+    display: inline;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a:hover {
+    color: #fbfbfa;
+}
+
+/* body {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+
+} */
+
+
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.wrapper {
+    flex: 1;
+}
+
+
+.content {
+    flex: 1;
+    padding: 20px;
+    max-width: max-content;
+}
+
+body {
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: inherit;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+header {
+    background-color: #f39c12;
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.container-fluid {
+    margin-top: 0; /* Hilangkan jarak di bawah header */
+    padding-top: 0;
+}
+
+h1 {
+    margin: 0; /* Hilangkan margin pada heading */
+    padding-top: 20px; /* Atur padding sesuai kebutuhan */
+}
+
+.footer {
+    background-color: #1a1a2e;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-section {
+    display: flex;
+    top: -100px; /* Move it up closer to the header */
+    margin-left: auto;
+    padding: 0;
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex; /* Flexbox for centering content */
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    text-align: center; /* Center align text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Text shadow */
+}
+
+.hero-content h1 {
+    font-size: 4rem; /* Adjust font size */
+    font-weight: bold;
+    color: #f39c12;
+}
+
+.hero-content a {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+.about {
+position: relative; /* Allows manual positioning */
+top: -100px; /* Move it up closer to the header */
+left: -61px;
+background-color: #f8f9fa; /* Light gray background */
+}
+
+.about img {
+max-width: 100%;
+height: auto;
+border-radius: 10px; /* Rounded corners for the image */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the image */
+}
+
+
+
+/* Center cards properly */
+.card {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100%;
+}
+/* Recipe Card Images */
+.card-img-top {
+width: 100%; /* Make the image span the width of the card */
+height: auto; /* Maintain the aspect ratio */
+aspect-ratio: 16/9; /* Ensure consistent ratio (16:9) */
+object-fit: cover; /* Ensures the image scales and crops without distortion */
+border-radius: 0; /* Optional: Removes rounding if unwanted */
+}
+/* Fix card title and button alignment */
+.card-body {
+display: flex;
+flex-direction: column;
+}
+
+/* Ensure the button stays at the bottom */
+.btn {
+margin-top: auto;
+}
+
+/* Featured Recipes Section Spacing */
+.featured-recipes {
+position: relative; /* Allows manual positioning */
+top: -100px; /* Move it up closer to the header */
+left: -61px;
+background-color: #f8f9fa;
+}
+
+.featured-recipes h2 {
+font-size: 2rem;
+padding: 50px;
+font-weight: bold;
+color: #333;
+}
+
+/* Testimonials Section */
+.testimonials {
+position: relative; /* Allows manual positioning */
+top: -100px; /* Move it up closer to the header */
+left: -61px;
+background-color: #f8f9fa; /* Light gray background */
+}
+
+.testimonials h2 {
+font-size: 2rem;
+padding: 50px;
+font-weight: bold;
+margin-bottom: 2rem;
+color: #333;
+}
+
+.testimonials .card {
+border: none;
+padding: 20px;
+background-color: white;
+transition: transform 0.3s;
+}
+
+.testimonials .card:hover {
+transform: translateY(-5px); /* Add a subtle hover effect */
+}
+
+.testimonials .image-container {
+width: 120px; /* Consistent size for all images */
+height: 120px;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+}
+
+.testimonials .image-container img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensures the image scales and crops correctly */
+border-radius: 50%;
+border: 3px solid #ddd;
+}
+
+.testimonials blockquote {
+font-style: italic;
+color: #555;
+font-size: 0.9rem;
+}
+
+.testimonials h5 {
+font-size: 1.1rem;
+font-weight: bold;
+margin-top: 0.5rem;
+}
+
+.testimonials small {
+color: #888;
+}
+
+.title-block {
+    background-color: rgb(255, 255, 255); /* Warna putih */
+    width: 1000px; /* Lebar spesifik */
+    border-radius: 8px; /* Sudut membulat */
+    display: block; /* Pastikan elemen adalah blok */
+    text-align: center; /* Pusatkan teks di dalam elemen */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+    border: 2px solid white; /* Tambahkan garis batas */
+    font-weight: bold; /* Perjelas teks */
+    margin: 0 auto 50px; /* Pusatkan elemen secara horizontal */
+    padding: 20px; /* Tambahkan ruang di dalam elemen */
+}
+
