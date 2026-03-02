@@ -33,7 +33,7 @@ jobs:
           server: ${{ secrets.INFINITYFREE_FTP_SERVER }}
           username: ${{ secrets.INFINITYFREE_FTP_USERNAME }}
           password: ${{ secrets.INFINITYFREE_FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
           server-dir: /htdocs/laravel_app/
           local-dir: ./
@@ -57,7 +57,7 @@ jobs:
           server: ${{ secrets.INFINITYFREE_FTP_SERVER }}
           username: ${{ secrets.INFINITYFREE_FTP_USERNAME }}
           password: ${{ secrets.INFINITYFREE_FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
           server-dir: /htdocs/
           local-dir: ./public/
@@ -70,7 +70,7 @@ jobs:
           server: ${{ secrets.INFINITYFREE_FTP_SERVER }}
           username: ${{ secrets.INFINITYFREE_FTP_USERNAME }}
           password: ${{ secrets.INFINITYFREE_FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
           server-dir: /htdocs/
           local-dir: ./deploy/infinityfree/
