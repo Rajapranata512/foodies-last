@@ -12,7 +12,7 @@
     </p>
 
     <img
-        src="{{ asset('storage/' . $recipe->image) }}"
+        src="{{ asset($recipe->image) }}"
         alt="{{ $recipe->name }}"
         class="w-100 rounded mb-4"
         style="max-height: 360px; object-fit: cover;"
@@ -81,3 +81,4 @@
     </div>
 </section>
 @endsection
+

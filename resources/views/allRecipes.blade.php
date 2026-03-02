@@ -40,7 +40,7 @@
         @foreach ($recipes as $recipe)
             <article class="recipe-card">
                 <img
-                    src="{{ asset('storage/' . $recipe->image) }}"
+                    src="{{ asset($recipe->image) }}"
                     alt="{{ $recipe->name }}"
                     onerror="this.onerror=null;this.src='{{ asset('images/logo.jpg') }}';"
                 >
