@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -87,11 +86,11 @@ class StepsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-             // Steps untuk Baklava
+            // Steps untuk Baklava
             [
                 'recipe_id' => 3,
                 'step_number' => 1,
-                'description' => 'Panaskan oven hingga 180°C.',
+                'description' => 'Panaskan oven hingga 180??C.',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -131,7 +130,7 @@ class StepsSeeder extends Seeder
                 'description' => 'Panaskan minyak di wajan, tumis bawang dan paprika hingga harum.',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]   ,
+            ],
             [
                 'recipe_id' => 4,
                 'step_number' => 2,
@@ -220,7 +219,7 @@ class StepsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-                // Steps untuk Martabak Manis
+            // Steps untuk Martabak Manis
             [
                 'recipe_id' => 7,
                 'step_number' => 1,

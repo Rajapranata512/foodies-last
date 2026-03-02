@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->foreignId('recipe_id');
-            $table->string('name', length:100);
+            $table->foreignId('recipe_id')->constrained()->cascadeOnDelete();
+            $table->string('name', 100);
             $table->string('quantity');
+            $table->timestamps();
         });
     }
 

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -366,7 +365,7 @@ class IngredientsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        
+
             // Bahan untuk Sushi Rolls
             [
                 'recipe_id' => 11,
@@ -403,7 +402,7 @@ class IngredientsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        
+
             // Bahan untuk Onigiri
             [
                 'recipe_id' => 12,
@@ -432,7 +431,7 @@ class IngredientsSeeder extends Seeder
                 'quantity' => '1/2 sdt',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],   
+            ],
         ]);
     }
 }

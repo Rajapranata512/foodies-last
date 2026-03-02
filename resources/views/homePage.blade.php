@@ -1,155 +1,167 @@
-@extends('layout')
-@section('content')
+﻿@extends('layout')
 
-<body>
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="hero-content">
-            <div class="title-block">
-                <h1>Selamat Datang di Foodies</h1>
-                <p class="lead">Foodies for a Better Future<p>
-                <a href="{{ url('/allRecipes') }}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; font-weight: bold; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
-                onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 8px rgba(0, 0, 0, 0.2)';"
-                onmouseout="this.style.backgroundColor='#007BFF'; this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)';"
-                onmousedown="this.style.backgroundColor='#003f7f'; this.style.transform='scale(1)'; this.style.boxShadow='inset 0 3px 6px rgba(0, 0, 0, 0.3)';"
-                onmouseup="this.style.backgroundColor='#0056b3'; this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 8px rgba(0, 0, 0, 0.2)';">
-                Jelajahi Resep</a>
-            </div>
+@section('content')
+<section class="entry-gate" id="entryGate" aria-label="Pembuka Website">
+    <div class="entry-noise"></div>
+    <div class="entry-orbit entry-orbit-a"></div>
+    <div class="entry-orbit entry-orbit-b"></div>
+    <div class="entry-orbit entry-orbit-c"></div>
+    <div class="entry-pulse"></div>
+
+    <div class="entry-core">
+        <span class="entry-kicker">Culinary Motion Experience</span>
+        <h1>Kripuk Flavor Portal</h1>
+        <p>
+            Meluncur ke dunia resep dengan transisi rasa, warna, dan ritme visual yang bergerak secara organik.
+        </p>
+        <div class="entry-actions">
+            <button type="button" class="btn-modern" id="enterKripuk">Masuk ke Website</button>
+            <button type="button" class="entry-skip" id="skipGate">Lewati Intro</button>
         </div>
     </div>
+</section>
 
-    <!-- About Section -->
-    <section class="about bg-light py-5" id="about">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Image Section -->
-                <div class="col-md-6 text-center">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="About Us" class="img-fluid rounded shadow">
-                </div>
-                <!-- Text Section -->
-                <div class="col-md-6">
-                    <h1><strong>Tentang Foodies</strong></h1>
-                    <p class="text-muted">
-                        Selamat datang di Foodies for a Better Future, platform yang menyediakan berbagai resep makanan dari berbagai daerah dan negara di seluruh dunia. Misi kami selaras dengan Tujuan Pembangunan Berkelanjutan (TPB/SDGs) dari Perserikatan Bangsa-Bangsa,
-                        khususnya dalam mendukung Tujuan 2: Tanpa Kelaparan dan Tujuan 3: Kehidupan Sehat dan Sejahtera.
-                        Melalui kekuatan makanan dan gizi, kami bertujuan untuk:
-                        Meningkatkan Gizi Global: Dengan berbagi resep bergizi yang menekankan pola makan seimbang dan praktik makanan berkelanjutan.
-                        Melestarikan Keberagaman Kuliner: Dengan merayakan kekayaan tradisi kuliner dari berbagai budaya untuk mempererat rasa hormat dan persatuan.
-                        Memberdayakan Komunitas: Dengan menyediakan sumber daya dan inspirasi untuk memasak makanan sehat di rumah.
-                        Kami percaya bahwa masa depan yang lebih sehat dimulai dengan memahami dan mengapresiasi nilai dari makanan bergizi. Melalui eksplorasi resep dari seluruh dunia, kita bisa belajar untuk tidak hanya memberi asupan terbaik bagi diri sendiri, tetapi juga untuk komunitas dan lingkungan. Bersama-sama,
-                        kita bisa mengambil langkah kecil menuju dunia tanpa kelaparan, malnutrisi, dan penyakit akibat pola makan yang tidak sehat.
-                        Mari bergabung bersama kami untuk membangun masa depan yang lebih sehat dan berkelanjutan—satu resep pada satu waktu.
-                    </p>
-                    <p class="text-muted">
-                        Apakah Anda seorang koki profesional atau koki rumahan, Foodies menawarkan sesuatu untuk semua orang. Jelajahi koleksi resep kami yang luas dan mulai perjalanan kuliner Anda hari ini.
+<section class="hero-section reveal-up">
+    <div class="hero-panel">
+        <span class="hero-kicker">Resep Semua Makanan</span>
+        <h1>Selamat Datang di Foodies</h1>
+        <p>Temukan dan bagikan resep lezat dengan dunia!</p>
+        <a href="{{ route('recipes.index') }}" class="btn-modern">Jelajahi Resep</a>
+    </div>
+</section>
+
+<section class="content-surface section-block reveal-up mt-4" id="about">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-5">
+            <img src="{{ asset('images/logo.jpg') }}" alt="Logo Kripuk" class="about-image">
+        </div>
+        <div class="col-lg-7 about-copy">
+            <h2 class="section-title mb-3">Tentang Foodies</h2>
+            <p>Selamat datang di Foodies, tujuan utama Anda untuk menemukan dan berbagi resep lezat dari seluruh dunia!
+Tujuan kami adalah menghubungkan orang melalui makanan dan menginspirasi kreativitas kuliner di setiap dapur.</p>
+            <p> Apakah Anda seorang koki profesional atau koki rumahan, Foodies menawarkan sesuatu untuk semua orang. Jelajahi koleksi resep kami yang luas dan mulai perjalanan kuliner Anda hari ini.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-surface section-block reveal-up" id="featured-recipes">
+    <h2 class="section-title text-center">Resep Pilihan</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="modern-card">
+                <img src="{{ asset('images/carbonara.jpg') }}" alt="Spaghetti Carbonara">
+                <div class="card-body p-3">
+                    <h3 class="card-title">Spaghetti Carbonara</h3>
+                    <p class="card-text">Hidangan pasta creamy dan gurih, cocok untuk makan siang maupun makan malam.</p>
+                    <a href="{{ route('recipes.index') }}" class="btn-modern mt-1">Lihat Semua Resep</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Featured receipes-->
-    <section class="featured-recipes py-5" id="featured-recipes">
-        <div class="container">
-            <!-- Section Title -->
-            <h2 class="text-center mb-5">Resep Pilihan</h2>
-
-            <div class="row">
-                <!-- Recipe Card 1 -->
-                <div class="col-md-4">
-                    <div class="card shadow h-100">
-                        <img src="{{ asset('images/carbonara.jpg') }}" class="card-img-top" alt="Recipe 1">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><strong>Spaghetti Carbonara</strong></h5>
-                            <p class="card-text flex-grow-1">Hidangan pasta yang creamy dan gurih, sempurna untuk makan malam.</p>
-                            <a href="{{route('allRecipes')}}" class="btn btn-warning mt-auto">Lihat semua resep</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe Card 2 -->
-                <div class="col-md-4">
-                    <div class="card shadow h-100">
-                        <img src="{{ asset('images/panna_cotta.jpg') }}" class="card-img-top" alt="Recipe 2">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><strong>Panna Cotta</strong></h5>
-                            <p class="card-text flex-grow-1">Panna cotta yang lembut dan manis, disajikan dengan saus buah segar, sempurna sebagai pencuci mulut.</p>
-                            <a href="{{route('allRecipes')}}" class="btn btn-warning mt-auto">Lihat semua resep</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe Card 3 -->
-                <div class="col-md-4">
-                    <div class="card shadow h-100">
-                        <img src="{{ asset('images/ramen.jpg') }}" class="card-img-top" alt="Recipe 3">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><strong>Ramen</strong></h5>
-                            <p class="card-text flex-grow-1">Mie ramen yang kaya rasa, dengan kaldu yang lezat dan topping yang menggugah selera. Sempurna untuk makan siang atau makan malam.</p>
-                            <a href="{{route('allRecipes')}}" class="btn btn-warning mt-auto">Lihat semua resep</a>
-                        </div>
-                    </div>
+        <div class="col-md-4">
+            <div class="modern-card">
+                <img src="{{ asset('images/panna_cotta.jpg') }}" alt="Panna Cotta">
+                <div class="card-body p-3">
+                    <h3 class="card-title">Panna Cotta</h3>
+                    <p class="card-text">Dessert lembut dengan rasa manis seimbang dan tampilan elegan.</p>
+                    <a href="{{ route('recipes.index') }}" class="btn-modern mt-1">Lihat Semua Resep</a>
                 </div>
             </div>
         </div>
-    </section>
 
-<!-- Testimonials Section -->
-<section class="testimonials py-5 bg-light" id="testimonials">
-    <div class="container">
-        <h2 class="text-center mb-5">Apa Kata Pelanggan Kami</h2>
-        <div class="row">
-            <!-- Testimonial 1 -->
-            <div class="col-md-4">
-                <div class="card shadow border-0 text-center">
-                    <div class="card-body">
-                        <div class="image-container mx-auto mb-3">
-                            <img src="{{ asset('images/ferdi1.jpg') }}" alt="Customer 1" class="rounded-circle">
-                        </div>
-                        <blockquote class="blockquote mb-3">
-                            <p class="mb-0">"Resep-resepnya luar biasa! Saya mencoba tiga resep, dan semuanya berhasil dengan sempurna."</p>
-                        </blockquote>
-                        <h5 class="mb-1">Ferdi</h5>
-                        <small class="text-muted">Pencinta Kuliner</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="col-md-4">
-                <div class="card shadow border-0 text-center">
-                    <div class="card-body">
-                        <div class="image-container mx-auto mb-3">
-                            <img src="{{ asset('images/raja.jpg') }}" alt="Customer 2" class="rounded-circle">
-                        </div>
-                        <blockquote class="blockquote mb-3">
-                            <p class="mb-0">"Ini adalah situs favorit saya untuk mencari inspirasi resep. Petunjuknya sangat jelas."</p>
-                        </blockquote>
-                        <h5 class="mb-1">Raja</h5>
-                        <small class="text-muted">Koki Rumahan</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="col-md-4">
-                <div class="card shadow border-0 text-center">
-                    <div class="card-body">
-                        <div class="image-container mx-auto mb-3">
-                            <img src="{{ asset('images/alfred.jpg') }}" alt="Customer 3" class="rounded-circle">
-                        </div>
-                        <blockquote class="blockquote mb-3">
-                            <p class="mb-0">"Saya suka betapa mudahnya menemukan dan menyimpan resep favorit saya di website ini"</p>
-                        </blockquote>
-                        <h5 class="mb-1">Alfred</h5>
-                        <small class="text-muted">Penggemar Baking</small>
-                    </div>
+        <div class="col-md-4">
+            <div class="modern-card">
+                <img src="{{ asset('images/ramen.jpg') }}" alt="Ramen">
+                <div class="card-body p-3">
+                    <h3 class="card-title">Ramen</h3>
+                    <p class="card-text">Mie berkuah kaya rasa dengan topping lengkap yang menggugah selera.</p>
+                    <a href="{{ route('recipes.index') }}" class="btn-modern mt-1">Lihat Semua Resep</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<section class="content-surface section-block reveal-up" id="testimonials">
+    <h2 class="section-title text-center">Apa Kata Pelanggan Kami</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <article class="testimonial-card">
+                <img src="{{ asset('images/ferdi1.jpg') }}" alt="Ferdi" class="avatar">
+                <blockquote class="mb-3">"Resep-resepnya jelas dan mudah dipraktikkan. Hasil masakan saya jadi lebih konsisten."</blockquote>
+                <h5 class="mb-1">Ferdi</h5>
+                <small class="text-muted">Pencinta Kuliner</small>
+            </article>
+        </div>
 
+        <div class="col-md-4">
+            <article class="testimonial-card">
+                <img src="{{ asset('images/raja.jpg') }}" alt="Raja" class="avatar">
+                <blockquote class="mb-3">"Situs favorit saya untuk cari inspirasi menu rumahan. Navigasinya juga enak dipakai."</blockquote>
+                <h5 class="mb-1">Raja</h5>
+                <small class="text-muted">Koki Rumahan</small>
+            </article>
+        </div>
 
-</body>
+        <div class="col-md-4">
+            <article class="testimonial-card">
+                <img src="{{ asset('images/alfred.jpg') }}" alt="Alfred" class="avatar">
+                <blockquote class="mb-3">"Tampilannya sekarang terasa premium, dan koleksi resepnya bikin betah jelajah lama."</blockquote>
+                <h5 class="mb-1">Alfred</h5>
+                <small class="text-muted">Penggemar Baking</small>
+            </article>
+        </div>
+    </div>
+</section>
+
+<script>
+    (() => {
+        const gate = document.getElementById('entryGate');
+        const enterButton = document.getElementById('enterKripuk');
+        const skipButton = document.getElementById('skipGate');
+
+        if (!gate || !enterButton || !skipButton) {
+            return;
+        }
+
+        const seenKey = 'kripuk_intro_seen_v1';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const alreadySeen = sessionStorage.getItem(seenKey) === '1';
+
+        if (alreadySeen) {
+            gate.remove();
+            return;
+        }
+
+        document.body.classList.add('gate-lock');
+
+        const closeGate = () => {
+            if (gate.classList.contains('is-leaving')) {
+                return;
+            }
+
+            gate.classList.add('is-leaving');
+            sessionStorage.setItem(seenKey, '1');
+
+            window.setTimeout(() => {
+                gate.remove();
+                document.body.classList.remove('gate-lock');
+            }, 900);
+        };
+
+        enterButton.addEventListener('click', closeGate);
+        skipButton.addEventListener('click', closeGate);
+
+        if (!reduceMotion) {
+            gate.addEventListener('mousemove', (event) => {
+                const x = (event.clientX / window.innerWidth) - 0.5;
+                const y = (event.clientY / window.innerHeight) - 0.5;
+                gate.style.setProperty('--gate-shift-x', `${x * 24}px`);
+                gate.style.setProperty('--gate-shift-y', `${y * 24}px`);
+            });
+        }
+
+        window.setTimeout(closeGate, reduceMotion ? 1800 : 5600);
+    })();
+</script>
 @endsection

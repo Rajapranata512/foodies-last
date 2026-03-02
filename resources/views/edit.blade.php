@@ -1,89 +1,80 @@
-
 @extends('layout')
 
 @section('content')
+<section class="content-surface section-block reveal-up">
+    <h1 class="section-title text-center mb-4">Edit Resep</h1>
 
-<div style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #fff; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-    <h1 style="text-align: center; margin-bottom: 20px;">Edit Recipe</h1>
-    <form action="{{ route('recipe.update', $recipe->id) }}" method="POST" enctype="multipart/form-data">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('recipes.update', $recipe) }}" method="POST" enctype="multipart/form-data" class="row g-3">
         @csrf
         @method('PUT')
 
-        <!-- Nama Resep -->
-        <div style="margin-bottom: 15px;">
-            <label for="name" style="display: block; font-weight: bold; margin-bottom: 5px;">Nama Resep</label>
-            <input type="text" name="name" id="name" value="{{ $recipe->name }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+        <div class="col-md-6">
+            <label for="name" class="form-label">Nama Resep</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $recipe->name) }}" required>
         </div>
 
-        <!-- Cuisine -->
-        <div style="margin-bottom: 15px;">
-            <label for="cuisine" style="display: block; font-weight: bold; margin-bottom: 5px;">Cuisine</label>
-            <select name="cuisine" id="cuisine" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
-                <option value="Western" {{ $recipe->cuisine == 'Western' ? 'selected' : '' }}>Western</option>
-                <option value="Asian" {{ $recipe->cuisine == 'Asian' ? 'selected' : '' }}>Asian</option>
-                <option value="Middle Eastern" {{ $recipe->cuisine == 'Middle Eastern' ? 'selected' : '' }}>Middle Eastern</option>
-                <option value="Latin" {{ $recipe->cuisine == 'Latin' ? 'selected' : '' }}>Latin</option>
+        <div class="col-md-6">
+            <label for="cuisine" class="form-label">Cuisine</label>
+            <select name="cuisine" id="cuisine" class="form-select" required>
+                @foreach ($cuisines as $cuisine)
+                    <option value="{{ $cuisine }}" {{ old('cuisine', $recipe->cuisine) === $cuisine ? 'selected' : '' }}>{{ $cuisine }}</option>
+                @endforeach
             </select>
         </div>
 
-        <!-- Meal Course -->
-        <div style="margin-bottom: 15px;">
-            <label for="meal_course" style="display: block; font-weight: bold; margin-bottom: 5px;">Tipe Makanan</label>
-            <select name="meal_course" id="meal_course" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
-                <option value="Appetizer" {{ $recipe->meal_course == 'Appetizer' ? 'selected' : '' }}>Appetizer</option>
-                <option value="Main Course" {{ $recipe->meal_course == 'Main Course' ? 'selected' : '' }}>Main Course</option>
-                <option value="Dessert" {{ $recipe->meal_course == 'Dessert' ? 'selected' : '' }}>Dessert</option>
+        <div class="col-md-4">
+            <label for="meal_course" class="form-label">Tipe Makanan</label>
+            <select name="meal_course" id="meal_course" class="form-select" required>
+                @foreach ($courses as $course)
+                    <option value="{{ $course }}" {{ old('meal_course', $recipe->meal_course) === $course ? 'selected' : '' }}>{{ $course }}</option>
+                @endforeach
             </select>
         </div>
 
-        <!-- Time -->
-        <div style="margin-bottom: 15px;">
-            <label for="time" style="display: block; font-weight: bold; margin-bottom: 5px;">Waktu Memasak (menit)</label>
-            <input type="number" name="time" id="time" value="{{ $recipe->time }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
+        <div class="col-md-4">
+            <label for="time" class="form-label">Waktu Memasak (menit)</label>
+            <input type="number" name="time" id="time" class="form-control" value="{{ old('time', $recipe->time) }}" min="1" required>
         </div>
 
-        <!-- Origin -->
-        <div style="margin-bottom: 15px;">
-            <label for="origin" style="display: block; font-weight: bold; margin-bottom: 5px;">Asal Negara</label>
-            <input type="text" name="origin" id="origin" value="{{ $recipe->origin }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
-        </div>
-
-        <!-- Difficulty -->
-        <div style="margin-bottom: 15px;">
-            <label for="difficulty" style="display: block; font-weight: bold; margin-bottom: 5px;">Tingkat Kesulitan</label>
-            <select name="difficulty" id="difficulty" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>
-                <option value="Easy" {{ $recipe->difficulty == 'Easy' ? 'selected' : '' }}>Easy</option>
-                <option value="Medium" {{ $recipe->difficulty == 'Medium' ? 'selected' : '' }}>Medium</option>
-                <option value="Hard" {{ $recipe->difficulty == 'Hard' ? 'selected' : '' }}>Hard</option>
+        <div class="col-md-4">
+            <label for="difficulty" class="form-label">Tingkat Kesulitan</label>
+            <select name="difficulty" id="difficulty" class="form-select" required>
+                @foreach ($difficulties as $difficulty)
+                    <option value="{{ $difficulty }}" {{ old('difficulty', $recipe->difficulty) === $difficulty ? 'selected' : '' }}>{{ $difficulty }}</option>
+                @endforeach
             </select>
         </div>
 
-        <!-- Deskripsi Resep -->
-        <div style="margin-bottom: 15px;">
-            <label for="description" style="display: block; font-weight: bold; margin-bottom: 5px;">Deskripsi Resep</label>
-            <textarea name="description" id="description" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" required>{{ $recipe->description }}</textarea>
+        <div class="col-md-8">
+            <label for="origin" class="form-label">Asal Negara</label>
+            <input type="text" name="origin" id="origin" class="form-control" value="{{ old('origin', $recipe->origin) }}" required>
         </div>
 
-        <!-- Gambar Resep -->
-        <div style="margin-bottom: 15px;">
-            <label for="image" style="display: block; font-weight: bold; margin-bottom: 5px;">Gambar Resep</label>
-            <input type="file" name="image" id="image" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            <p style="font-size: 12px; color: #555; margin-top: 5px;">Biarkan kosong jika tidak ingin mengganti gambar.</p>
+        <div class="col-md-4">
+            <label for="image" class="form-label">Gambar Baru</label>
+            <input type="file" name="image" id="image" class="form-control" accept="image/*">
+            <small class="text-muted">Kosongkan jika tidak mengganti gambar.</small>
         </div>
 
-        <!-- Tombol Back & Submit -->
-        <div style="display: flex; gap: 10px; justify-content: left;">
-            <a href="{{ route('recipe.details', ['id' => $recipe->id]) }}"
-               class="btn btn-primary"
-               style="padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">
-                Kembali
-            </a>
-            <button type="submit"
-                    style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Update Resep
-            </button>
+        <div class="col-12">
+            <label for="description" class="form-label">Deskripsi Resep</label>
+            <textarea name="description" id="description" rows="4" class="form-control" required>{{ old('description', $recipe->description) }}</textarea>
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+            <a href="{{ route('recipes.show', $recipe) }}" class="page-pill">Kembali</a>
+            <button type="submit" class="btn-modern">Update Resep</button>
         </div>
     </form>
-</div>
-
+</section>
 @endsection

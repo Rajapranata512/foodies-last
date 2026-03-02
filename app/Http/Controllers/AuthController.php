@@ -2,75 +2,87 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-Use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\RecipeController;
-
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    //
-    public function register(){
-        // if(Auth::check()){
-        //     return redirect() -> route('foodies.home');
-        // }
-        return View("auth.register");
-
+    public function register()
+    {
+        return view('auth.register');
     }
 
-
-    public function doRegister(Request $request){
-        $request->validate([
-            'name'=>'required|max:25',
-            'email' => 'required|email|unique:users',
-            'password' =>'required|min:6|confirmed'
-        ]);
-
+    public function doRegister(RegisterRequest $request)
+    {
+        $validated = $request->validated();
 
         $user = User::create([
-            'name' =>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password)
+            'name' => $validated['name'],
+            'email' => Str::lower($validated['email']),
+            'password' => Hash::make($validated['password']),
         ]);
 
         Auth::login($user);
+        $request->session()->regenerate();
 
-        return redirect()->route('foodies.home')->with('success', 'Registration successful!');
+        return redirect()
+            ->route('home')
+            ->with('success', 'Registrasi berhasil.');
     }
 
-    public function profile(){
-        $users = User::all();
-        return view('profile', ['users'=>$users]);
+    public function profile()
+    {
+        return view('profile');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('foodies.home'); // Redirect to home or login page
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
-    public function login(){
+
+    public function login()
+    {
         return view('login');
     }
 
-    public function processLogin(Request $request)
+    public function processLogin(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->validated();
+        $throttleKey = Str::transliterate(Str::lower($credentials['email']).'|'.$request->ip());
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'Login berhasil!');
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+
+            return back()->withErrors([
+                'email' => "Terlalu banyak percobaan login. Coba lagi dalam {$seconds} detik.",
+            ])->onlyInput('email');
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->onlyInput('email');
+        if (! Auth::attempt([
+            'email' => Str::lower($credentials['email']),
+            'password' => $credentials['password'],
+        ], (bool) ($credentials['remember'] ?? false))) {
+            RateLimiter::hit($throttleKey, 60);
+
+            return back()->withErrors([
+                'email' => 'Email atau password salah.',
+            ])->onlyInput('email');
+        }
+
+        RateLimiter::clear($throttleKey);
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('home'))
+            ->with('success', 'Login berhasil.');
     }
 }
-
-

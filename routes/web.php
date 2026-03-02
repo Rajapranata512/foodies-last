@@ -1,35 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecipeController;
+use Illuminate\Support\Facades\Route;
 
-//Home Page
-Route::get('/', [RecipeController::class, 'homePage'])->name('foodies.home');
-Route::get('/recipes/{id}', [RecipeController::class, 'homeDetails'])->name('recipe.details2');
+Route::get('/', [RecipeController::class, 'homePage'])->name('home');
 
-//Add Recipe
-Route::get('/addRecipe', [RecipeController::class, 'addRecipe'])->name('add.recipe');
-Route::post('/addRecipe/Store', [RecipeController::class, 'storeRecipe'])->name('store.recipe');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'doRegister'])->name('register.store');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
+});
 
-//Login & Register
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('doregister', [AuthController::class,'doregister'])->name('doregister');
-Route::get('/profile', [Authcontroller::class, 'profile'])->name('profile');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 
-// All recipes
-Route::get('/allRecipes', [RecipeController::class, 'allRecipes'])->name('allRecipes');
-Route::get('/recipes/{id}', [RecipeController::class, 'details'])->name('recipe.details');
+    Route::get('/recipes/create', [RecipeController::class, 'addRecipe'])->name('recipes.create');
+    Route::post('/recipes', [RecipeController::class, 'storeRecipe'])->name('recipes.store');
+    Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
+    Route::put('/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
+    Route::get('/recipes/{recipe}/delete', [RecipeController::class, 'deleteConfirmation'])->name('recipes.delete.confirmation');
+    Route::delete('/recipes/{recipe}', [RecipeController::class, 'deleteRecipe'])->name('recipes.destroy');
+});
 
-// Delete
-Route::get('/recipes/{id}/delete', [RecipeController::class, 'deleteConfirmation'])->name('delete.confirmation');
-Route::delete('/recipes/{id}', [RecipeController::class, 'deleteRecipe'])->name('delete.recipe');
+Route::get('/recipes', [RecipeController::class, 'allRecipes'])->name('recipes.index');
+Route::get('/recipes/{recipe}', [RecipeController::class, 'details'])->name('recipes.show');
 
-//Edit
-Route::get('/recipes/{id}/edit', [RecipeController::class, 'edit'])->name('recipe.edit');
-Route::put('/recipes/{id}', [RecipeController::class, 'update'])->name('recipe.update');
-
-
+Route::redirect('/allRecipes', '/recipes');
+Route::redirect('/addRecipe', '/recipes/create');

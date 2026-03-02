@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +13,13 @@ class RecipesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        DB::table('recipes')->insert([
+        $ownerId = User::query()->value('id');
+
+        if (! $ownerId) {
+            return;
+        }
+
+        $recipes = [
             [
                 'name' => 'Spaghetti Carbonara',
                 'cuisine' => 'Western',
@@ -35,7 +40,7 @@ class RecipesSeeder extends Seeder
                 'time' => 30,
                 'origin' => 'Indonesia',
                 'difficulty' => 'Medium',
-                'image' =>'images/rendang.jpg',
+                'image' => 'images/rendang.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -137,7 +142,7 @@ class RecipesSeeder extends Seeder
             ],
             [
                 'name' => 'Sushi Rolls',
-                'cuisine' => 'Asian', 
+                'cuisine' => 'Asian',
                 'description' => 'Gulungan nasi yang diisi dengan ikan segar, sayuran, dan dibungkus dengan rumput laut.',
                 'meal_course' => 'Appetizer',
                 'time' => 40,
@@ -159,6 +164,11 @@ class RecipesSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        DB::table('recipes')->insert(array_map(
+            fn (array $recipe) => ['user_id' => $ownerId] + $recipe,
+            $recipes
+        ));
     }
 }

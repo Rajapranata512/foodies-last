@@ -1,78 +1,83 @@
-
-
 @extends('layout')
 
 @section('content')
-
-<div style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #fff; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-
-    <!-- Pesan Sukses -->
-    @if(session('success'))
-        <div style="padding: 10px; margin-bottom: 20px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px;">
-            {{ session('success') }}
-        </div>
+<section class="content-surface section-block reveal-up">
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <h1 style="text-align: center; margin: 20px 0;">{{ $recipe->name }}</h1>
+    <h1 class="section-title text-center mb-3">{{ $recipe->name }}</h1>
+    <p class="text-center text-muted mb-4">
+        Dibuat oleh {{ $recipe->user?->name ?? 'Unknown' }} • {{ $recipe->cuisine }} • {{ $recipe->difficulty }}
+    </p>
+
     <img
         src="{{ asset('storage/' . $recipe->image) }}"
         alt="{{ $recipe->name }}"
-        style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;"
+        class="w-100 rounded mb-4"
+        style="max-height: 360px; object-fit: cover;"
     >
 
-    <h2 style="color: #333;">Deskripsi</h2>
-    <p style="font-size: 16px; color: #555;">{{ $recipe->description }}</p>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <h5>Deskripsi</h5>
+            <p class="text-muted">{{ $recipe->description }}</p>
+        </div>
+        <div class="col-md-6">
+            <h5>Informasi</h5>
+            <ul class="ingredients-list">
+                <li>Tipe Makanan: {{ $recipe->meal_course }}</li>
+                <li>Waktu Masak: {{ $recipe->time }} menit</li>
+                <li>Asal Negara: {{ $recipe->origin }}</li>
+                <li>Tingkat Kesulitan: {{ $recipe->difficulty }}</li>
+            </ul>
+        </div>
 
-    <h2 style="color: #333;">Cuisine</h2>
-    <p style="font-size: 16px; color: #555;">{{ $recipe->cuisine }}</p>
+        <div class="col-md-4">
+            <h5>Bahan-bahan</h5>
+            <ul class="ingredients-list">
+                @forelse ($recipe->ingredients as $ingredient)
+                    <li>{{ $ingredient->name }} - {{ $ingredient->quantity }}</li>
+                @empty
+                    <li>Belum ada data bahan.</li>
+                @endforelse
+            </ul>
+        </div>
 
-    <h2 style="color: #333;">Tipe Makanan (menit)</h2>
-    <p style="font-size: 16px; color: #555;">{{ $recipe->meal_course }}</p>
+        <div class="col-md-4">
+            <h5>Langkah-langkah</h5>
+            <ol class="ingredients-list">
+                @forelse ($recipe->steps as $step)
+                    <li>{{ $step->description }}</li>
+                @empty
+                    <li>Belum ada data langkah.</li>
+                @endforelse
+            </ol>
+        </div>
 
-    <h2 style="color: #333;">Waktu Masak</h2>
-    <p style="font-size: 16px; color: #555;">{{ $recipe->time }} minutes</p>
-
-    <h2 style="color: #333;">Asal Negara</h2>
-    <p style="font-size: 16px; color: #555;">{{ $recipe->origin }}</p>
-
-    <h2 style="color: #333;">Tingkat Kesulitan</h2>
-    <p style="font-size: 16px; color: #555;">{{ $recipe->difficulty }}</p>
-
-    <h2 style="color: #333;">Bahan - bahan</h2>
-    <ul style="font-size: 16px; color: #555;">
-        @foreach ($recipe->ingredients as $ingredient)
-            <li>{{ $ingredient->name }} - {{ $ingredient->quantity }}</li>
-        @endforeach
-    </ul>
-
-    <h2 style="color: #333;">Langkah - langkah</h2>
-    <ol style="font-size: 16px; color: #555;">
-        @foreach ($recipe->steps as $step)
-            <li>{{ $step->description }}</li>
-        @endforeach
-    </ol>
-
-    <h2 style="color: #333;">Peralatan</h2>
-    <ul style="font-size: 16px; color: #555;">
-        @foreach ($recipe->equipments as $equipment)
-            <li>{{ $equipment->name }}</li>
-        @endforeach
-    </ul>
-
-    <!-- Back & Edit Buttons -->
-    <div style="text-align: left; margin-top: 20px; display: flex; gap: 10px;">
-        <a href="{{ route('allRecipes') }}" class="btn btn-primary" style="padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">
-            Kembali
-        </a>
-        <a href="{{ route('recipe.edit', ['id' => $recipe->id]) }}" class="btn btn-success" style="padding: 10px 20px; background-color: #42d565; color: white; text-decoration: none; border-radius: 5px;">
-            Edit Resep
-        </a>
-        <a href="{{route('delete.confirmation', $recipe->id)}}" class="btn btn-uccess" style="padding: 10px 20px; background-color: #e24f44; color: white; text-decoration: none; border-radius: 5px;">
-            Hapus Resep
-        </a>
+        <div class="col-md-4">
+            <h5>Peralatan</h5>
+            <ul class="ingredients-list">
+                @forelse ($recipe->equipments as $equipment)
+                    <li>{{ $equipment->name }}</li>
+                @empty
+                    <li>Belum ada data peralatan.</li>
+                @endforelse
+            </ul>
+        </div>
     </div>
-</div>
 
+    <div class="d-flex gap-2 mt-4 flex-wrap">
+        <a href="{{ route('recipes.index') }}" class="page-pill">Kembali</a>
+
+        @auth
+            @can('update', $recipe)
+                <a href="{{ route('recipes.edit', $recipe) }}" class="btn-modern">Edit Resep</a>
+            @endcan
+            @can('delete', $recipe)
+                <a href="{{ route('recipes.delete.confirmation', $recipe) }}" class="page-pill">Hapus Resep</a>
+            @endcan
+        @endauth
+    </div>
+</section>
 @endsection
-
-

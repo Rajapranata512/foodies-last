@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Equipment extends Model
 {
@@ -19,5 +19,6 @@ class Equipment extends Model
     {
         return $this->belongsTo(Recipe::class);
     }
+
     protected $table = 'equipments';
 }

@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('name', 100);
+            $table->string('cuisine', 50);
+            $table->text('description');
+            $table->string('meal_course', 50);
+            $table->unsignedSmallInteger('time');
+            $table->string('origin', 100);
+            $table->string('difficulty', 20);
+            $table->string('image', 255);
             $table->timestamps();
-            $table->string('name', length:100); // Nama Dish
-            $table->enum('cuisine', ['Western', 'Asian', 'Middle Eastern', 'African']); // Asal Dish
-            $table->text('description'); // Deskripsi Dish
-            $table->enum('meal_course', ['Dessert', 'Main Course', 'Appetizer']); // Tipe Dish
-            $table->integer('time'); // Waktu memasak
-            $table->string('origin', length:100); // Negara asal Dish
-            $table->enum('difficulty', ['Easy', 'Medium', 'Hard']); // Tingkat kesulitan
-            $table->string('image', length:255); // Gambar Dish
+
+            $table->index(['cuisine', 'difficulty']);
         });
     }
 
