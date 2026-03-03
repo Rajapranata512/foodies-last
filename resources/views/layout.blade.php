@@ -53,7 +53,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; {{ date('Y') }} Kripuk. Project Website Programming.</p>
+        <p>&copy; {{ date('Y') }} Foodies. Project Website Programming.</p>
     </footer>
 
     <script src="{{ asset('js/visitor-effects.js') }}" defer></script>

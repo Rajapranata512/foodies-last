@@ -10,12 +10,12 @@
 
     <div class="entry-core">
         <span class="entry-kicker">Culinary Motion Experience</span>
-        <h1>Kripuk Flavor Portal</h1>
+        <h1>Foodies Flavor Portal</h1>
         <p>
             Meluncur ke dunia resep dengan transisi rasa, warna, dan ritme visual yang bergerak secara organik.
         </p>
         <div class="entry-actions">
-            <button type="button" class="btn-modern" id="enterKripuk">Masuk ke Website</button>
+            <button type="button" class="btn-modern" id="enterFoodies">Masuk ke Website</button>
             <button type="button" class="entry-skip" id="skipGate">Lewati Intro</button>
         </div>
     </div>
@@ -33,7 +33,7 @@
 <section class="content-surface section-block reveal-up mt-4" id="about">
     <div class="row align-items-center g-4">
         <div class="col-lg-5">
-            <img src="{{ asset('images/logo.jpg') }}" alt="Logo Kripuk" class="about-image">
+            <img src="{{ asset('images/logo.jpg') }}" alt="Logo Foodies" class="about-image">
         </div>
         <div class="col-lg-7 about-copy">
             <h2 class="section-title mb-3">Tentang Foodies</h2>
@@ -117,14 +117,14 @@ Tujuan kami adalah menghubungkan orang melalui makanan dan menginspirasi kreativ
 <script>
     (() => {
         const gate = document.getElementById('entryGate');
-        const enterButton = document.getElementById('enterKripuk');
+        const enterButton = document.getElementById('enterFoodies');
         const skipButton = document.getElementById('skipGate');
 
         if (!gate || !enterButton || !skipButton) {
             return;
         }
 
-        const seenKey = 'kripuk_intro_seen_v1';
+        const seenKey = 'foodies_intro_seen_v1';
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const alreadySeen = sessionStorage.getItem(seenKey) === '1';
 
