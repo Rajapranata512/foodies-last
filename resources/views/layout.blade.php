@@ -11,7 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <title>Foodies</title>
 </head>
-<body class="site-body">
+<body class="site-body" data-motion="booting">
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+        <div class="page-transition__grain"></div>
+        <div class="page-transition__label">Foodies Experience</div>
+    </div>
+
+    <div class="cinema-vignette" aria-hidden="true"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
     <canvas class="fx-canvas" id="fxCanvas" aria-hidden="true"></canvas>
     <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>

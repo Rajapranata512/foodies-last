@@ -8,29 +8,31 @@
     <div class="entry-orbit entry-orbit-c"></div>
     <div class="entry-pulse"></div>
 
-    <div class="entry-core">
-        <span class="entry-kicker">Culinary Motion Experience</span>
-        <h1>Foodies Flavor Portal</h1>
-        <p>
+    <div class="entry-core" data-stagger="0.12">
+        <span class="entry-kicker stagger-item">Culinary Motion Experience</span>
+        <h1 class="stagger-item">Foodies Flavor Portal</h1>
+        <p class="stagger-item">
             Meluncur ke dunia resep dengan transisi rasa, warna, dan ritme visual yang bergerak secara organik.
         </p>
-        <div class="entry-actions">
+        <div class="entry-actions stagger-item">
             <button type="button" class="btn-modern" id="enterFoodies">Masuk ke Website</button>
             <button type="button" class="entry-skip" id="skipGate">Lewati Intro</button>
         </div>
     </div>
 </section>
 
-<section class="hero-section reveal-up">
-    <div class="hero-panel">
-        <span class="hero-kicker">Resep Semua Makanan</span>
-        <h1>Selamat Datang di Foodies</h1>
-        <p>Temukan dan bagikan resep lezat dengan dunia!</p>
-        <a href="{{ route('recipes.index') }}" class="btn-modern">Jelajahi Resep</a>
+<section class="hero-section reveal-up" data-parallax="0.08">
+    <div class="hero-flare hero-flare-a" aria-hidden="true"></div>
+    <div class="hero-flare hero-flare-b" aria-hidden="true"></div>
+    <div class="hero-panel" data-stagger="0.08">
+        <span class="hero-kicker stagger-item">Resep Semua Makanan</span>
+        <h1 class="stagger-item">Selamat Datang di Foodies</h1>
+        <p class="stagger-item">Temukan dan bagikan resep lezat dengan dunia!</p>
+        <a href="{{ route('recipes.index') }}" class="btn-modern stagger-item">Jelajahi Resep</a>
     </div>
 </section>
 
-<section class="content-surface section-block reveal-up mt-4" id="about">
+<section class="content-surface section-block reveal-up mt-4" id="about" data-parallax="0.03">
     <div class="row align-items-center g-4">
         <div class="col-lg-5">
             <img src="{{ asset('images/logo.jpg') }}" alt="Logo Foodies" class="about-image">
@@ -44,7 +46,7 @@ Tujuan kami adalah menghubungkan orang melalui makanan dan menginspirasi kreativ
     </div>
 </section>
 
-<section class="content-surface section-block reveal-up" id="featured-recipes">
+<section class="content-surface section-block reveal-up" id="featured-recipes" data-parallax="0.02">
     <h2 class="section-title text-center">Resep Pilihan</h2>
     <div class="row g-4">
         <div class="col-md-4">
@@ -82,7 +84,7 @@ Tujuan kami adalah menghubungkan orang melalui makanan dan menginspirasi kreativ
     </div>
 </section>
 
-<section class="content-surface section-block reveal-up" id="testimonials">
+<section class="content-surface section-block reveal-up" id="testimonials" data-parallax="0.02">
     <h2 class="section-title text-center">Apa Kata Pelanggan Kami</h2>
     <div class="row g-4">
         <div class="col-md-4">
